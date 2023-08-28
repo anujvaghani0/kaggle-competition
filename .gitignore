@@ -163,3 +163,4 @@ cython_debug/
 **/.DS_Store
 cardekho-car-price-prediction/carPricePrediction
 
+.DS_Store
