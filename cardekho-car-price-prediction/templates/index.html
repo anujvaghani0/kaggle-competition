@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Predictor</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #container {
+            background-color: #fff;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h2 {
+            color: #333;
+        }
+        
+        form {
+            display: grid;
+            gap: 10px;
+        }
+        
+        label {
+            font-weight: bold;
+            color: #555;
+        }
+        
+        input[type="number"],
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        select {
+            appearance: none;
+            background-color: #f9f9f9;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="container">
+        <h2>Car Price Predictor</h2>
+        <form action="{{ url_for('predict')}}" method="post">
+            <label for="year">Year</label>
+            <input id="year" name="Year" type="number" required>
+            
+            <label for="price">Showroom Price (In lakhs)</label>
+            <input id="price" name="Present_Price" type="text" required>
+            
+            <label for="km">Kilometers Driven</label>
+            <input id="km" name="Kms_Driven" type="text" required>
+            
+            <label for="owner">Number of Previous Owners</label>
+            <input id="owner" name="Owner" type="text" required>
+            
+            <label for="fuel">Fuel Type</label>
+            <select id="fuel" name="Fuel_Type_Petrol" required>
+                <option value="Petrol">Petrol</option>
+                <option value="Diesel">Diesel</option>
+                <option value="CNG">CNG</option>
+            </select>
+            
+            <label for="seller">Seller Type</label>
+            <select id="seller" name="Seller_Type_Individual" required>
+                <option value="Dealer">Dealer</option>
+                <option value="Individual">Individual</option>
+            </select>
+            
+            <label for="transmission">Transmission Type</label>
+            <select id="transmission" name="Transmission_Mannual" required>
+                <option value="Manual">Manual Car</option>
+                <option value="Automatic">Automatic Car</option>
+            </select>
+            
+            <button type="submit">Calculate Selling Price</button>
+        </form>
+        
+        <div id="result">
+            {{ prediction_text }}
+        </div>
+    </div>
+
+</body>
+
+</html>
